@@ -18,11 +18,18 @@ University of South Florida - Tampa, FL
 ## Skills
 
 ~~~
-aboutme <- anthonyRuiz %>%
-  mutate(education =
-    case_when(
-      year == 2013 ~ 'bachelorsDegree',
-      year == 2016 ~ 'mastersDegree',
-      TRUE ~ NULL)
-      )
+about.me <- anthonyRuiz %>%
+  mutate(
+    education =
+      case_when(
+        year == 2013 & institution == 'University of South Florida' ~ 'bsEconomics',
+        year == 2016 & institution == 'University of South Florida' ~ 'maEconomics',
+        TRUE ~ NULL),
+    experience =
+      case_when(
+        year > 2018 & company == 'The Walt Disney Company' ~ 'dataScientist',
+        year == 2018 & company == 'Electronic Arts' ~ 'dataAnalyst',
+        year >= 2016 & year < 2018 & company == 'The Walt Disney Company' ~ "revenueManagement"
+        TRUE ~ NULL)
+        )      
 ~~~
