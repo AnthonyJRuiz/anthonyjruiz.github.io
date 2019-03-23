@@ -17,7 +17,7 @@ baseurl: ""
 title: Anthony J. Ruiz
 
 # Short description of your site
-description: A virtual proof that name is awesome!
+description: Linear in the parameters
 
 # --- Navigation bar options --- #
 
@@ -64,7 +64,7 @@ footer-link-col: "#404040"
 # Change all these values or delete the ones you don't want.
 # Important: you must keep the "name" parameter, everything else you can remove
 author:
-  name: Some Person
+  name: Anthony J. Ruiz
 
 # Select your active Social Network Links.
 # Uncomment the links you want to show in the footer and add your information to each link.
@@ -78,7 +78,7 @@ social-network-links:
   twitter: anthonyjruiz
 #  reddit: yourname
 #  google-plus: +DeanAttali
-  linkedin: https://www.linkedin.com/in/ruizanthonyj
+  linkedin: ruizanthonyj
 #  xing: yourname
 #  stackoverflow: "3943160/daattali"
 #  snapchat: deanat78

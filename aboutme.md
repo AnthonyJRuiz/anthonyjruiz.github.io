@@ -4,7 +4,7 @@ title: About me
 subtitle: Why you'd want to go on a date with me
 ---
 
-My name is Inigo Montoya. I have the following qualities:
+My name is Anthony and i'm currently a data scientist at the Walt Disney Company. I have both undergraduate and graduate degrees in economics from the University of South Florida. My main area is econometrics and statistics. I enjoy learning, traveling and of course....
 
 - I rock a great mustache
 - I'm extremely loyal to my family
