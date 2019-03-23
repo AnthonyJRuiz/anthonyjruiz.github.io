@@ -9,7 +9,7 @@ layout: page
 <br />
 - - - -
 
-**Master of Arts - Economics**                                August 2014 - May 2016
+**Master of Arts - Economics**                                August 2014 - May 2016 <br>
 University of South Florida - Tampa, FL
 > * **Relevant Courses**: Econometrics, Biostatistics I, Biostatistics II, Time Series Forecasting and Analysis, Microeconomics, Macroeconomics, Mathematics for Economist (Calculus I-III, Linear Algebra)
 > *  Member of Omicron Delta Epsilon, International Society for Economics
