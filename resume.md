@@ -2,23 +2,10 @@
 layout: page
 title: Anthony J. Ruiz
 subtitle: Email: ruiz.anthonyj@gmail.com | location: Orlando, FL
-feature image:  "https://picsum.photos/2560/600?image=957"
 ---
 
-## Education
+```javascript
 
-**Master of Arts** - Economics &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; &nbsp; &nbsp; August 2014 - May 2016 <br>
-University of South Florida - Tampa, FL
-
-**Bachelor of Science** - Business Economics 3.8/4.0 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; August 2014 - May 2016 <br>
-University of South Florida - Tampa, FL
-
-## Experience
-
-
-## Skills
-
-~~~
 library(tidyverse)
 
 aboutMe <- anthonyRuiz %>%
@@ -33,5 +20,5 @@ aboutMe <- anthonyRuiz %>%
         year > 2018 & employer == 'The Walt Disney Company' ~ 'Data Scientist',
         year < 2018 & employer == 'Electronic Arts' ~ 'Data Analyst',
         TRUE ~ NULL)
-        )      
-~~~
+      )      
+```

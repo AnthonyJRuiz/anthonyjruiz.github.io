@@ -4,13 +4,22 @@ title: About me
 subtitle: Why you'd want to go on a date with me
 ---
 
-My name is Anthony and i'm currently a data scientist at the Walt Disney Company. I have both undergraduate and graduate degrees in economics from the University of South Florida. My main area is econometrics and statistics. I enjoy learning, traveling and of course....
+I am currently a data scientist currently working at the Walt Disney company. I have both an undergraduate and graduate degrees in economics from the University of South Florida. I love traveling, economics, statistics and memes...
 
-- I rock a great mustache
-- I'm extremely loyal to my family
+```javascript
+library(tidyverse)
 
-What else do you need?
-
-### my history
-
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](http://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
+aboutMe <- anthonyRuiz %>%
+  mutate(
+    education =
+      case_when(
+        year == 2013 & institution == 'University of South Florida' ~ 'B.S. Economics',
+        year == 2016 & institution == 'University of South Florida' ~ 'M.S. Economics',
+        TRUE ~ NULL),
+    experience =
+      case_when(
+        year > 2018 & employer == 'The Walt Disney Company' ~ 'Data Scientist',
+        year < 2018 & employer == 'Electronic Arts' ~ 'Data Analyst',
+        TRUE ~ NULL)
+      )      
+```

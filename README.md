@@ -1,1 +1,1 @@
-Repository for [link](www.anthonyjruiz.github.io)
+Repository for [anthonyjruiz.github.io](https://anthonyjruiz.github.io/)
