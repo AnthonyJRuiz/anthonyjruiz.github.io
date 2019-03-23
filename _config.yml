@@ -24,7 +24,7 @@ description: Linear in the parameters
 # List of links in the navigation bar
 navbar-links:
   About Me: "aboutme"
-  Shiny:
+  Shiny Dashboards:
     - Boston Housing: "https://anthonyjruiz.shinyapps.io/boston_housing_app/"
 #  Author's home: "http://deanattali.com"
 
@@ -69,7 +69,7 @@ author:
 # You can reorder the items to define the link order.
 # If you want to add a new link that isn't here, you'll need to also edit the file _data/SocialNetworks.yml
 social-network-links:
-  rss: true
+#  rss: true
   email: "ruiz.anthonyj@gmail.com"
 #  facebook: daattali
   github: anthonyjruiz
@@ -80,7 +80,7 @@ social-network-links:
 #  xing: yourname
 #  stackoverflow: "3943160/daattali"
 #  snapchat: deanat78
-#  instagram: deanat78
+  instagram: _antstagrams
 #  youtube: user/deanat78
 #  spotify: yourname
 #  telephone: +14159998888
