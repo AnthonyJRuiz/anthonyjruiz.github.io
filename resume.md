@@ -2,6 +2,7 @@
 layout: page
 title: Anthony J. Ruiz
 subtitle: Email: ruiz.anthonyj@gmail.com | location: Orlando, FL
+feature image:  "https://picsum.photos/2560/600?image=957"
 ---
 
 ## Education
