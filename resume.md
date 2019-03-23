@@ -1,10 +1,10 @@
 ---
 layout: page
 title: Anthony J. Ruiz
-subtitle: Email:ruiz.anthonyj@gmail.com | location:Orlando, FL
+subtitle: Email: ruiz.anthonyj@gmail.com | location: Orlando, FL
 ---
 
-##Education
+## Education
 
 **Master of Arts** - Economics &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; August 2014 - May 2016 <br>
 University of South Florida - Tampa, FL
@@ -16,3 +16,13 @@ University of South Florida - Tampa, FL
 
 
 ## Skills
+
+~~~
+aboutme <- anthonyRuiz %>%
+  mutate(education =
+    case_when(
+      year == 2013 ~ 'bachelorsDegree',
+      year == 2016 ~ 'mastersDegree',
+      TRUE ~ NULL)
+      )
+~~~
