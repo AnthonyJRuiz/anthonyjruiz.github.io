@@ -1,16 +1,18 @@
 ---
 layout: page
-title: About me
-subtitle: Why you'd want to go on a date with me
+title: Anthony J. Ruiz
+subtitle: Orlando, FL
 ---
 
-My name is Anthony and i'm currently a data scientist at the Walt Disney Company. I have both undergraduate and graduate degrees in economics from the University of South Florida. My main area is econometrics and statistics. I enjoy learning, traveling and of course....
+# Education
 
-- I rock a great mustache
-- I'm extremely loyal to my family
+Master of Arts - Economics 3.5/4.0                                                                           August 2014 - May 2016
+University of South Florida - Tampa, FL
+ - Relevant Coursework: Econometrics, Biostatistics I, Biostatistics II, Time Series Analysis
+ - Member of Omicron Delta Epsilon, international honor society for Economics
 
-What else do you need?
 
-### my history
+Bachelor of Science - Quantitative Economics 3.8/4.0                                                         August 2014 - May 2016
+University of South Florida - Tampa, FL
 
-To be honest, I'm having some trouble remembering right now, so why don't you just watch [my movie](http://en.wikipedia.org/wiki/The_Princess_Bride_%28film%29) and it will answer **all** your questions.
+# Experience
