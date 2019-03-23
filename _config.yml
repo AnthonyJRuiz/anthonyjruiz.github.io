@@ -24,9 +24,11 @@ description: Linear in the parameters
 # List of links in the navigation bar
 navbar-links:
   About Me: "aboutme"
-  Resume:
+  Tutorials:
   Shiny Dashboards:
     - Boston Housing: "https://anthonyjruiz.shinyapps.io/boston_housing_app/"
+  Resume:
+
 #  Author's home: "http://deanattali.com"
 
 # Image to show in the navigation bar - image must be a square (width = height)
