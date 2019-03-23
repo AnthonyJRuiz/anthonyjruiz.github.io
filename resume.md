@@ -9,18 +9,20 @@ layout: page
 <br />
 - - - -
 
-**Master of Arts - Economics**                                August 2014 - May 2016 <br>
+**Master of Arts - Economics**  August 2014 - May 2016 <br>
 University of South Florida - Tampa, FL
 > * **Relevant Courses**: Econometrics, Biostatistics I, Biostatistics II, Time Series Forecasting and Analysis, Microeconomics, Macroeconomics, Mathematics for Economist (Calculus I-III, Linear Algebra)
 > *  Member of Omicron Delta Epsilon, International Society for Economics
 
+**Bachelor of Science - Quantitative Economics** August 2011 - May 2013 <br>
+University of South Florida - Tampa, FL
 
 <span style="font-family:Didot; font-size:2em;"> Experience</span>
 <br />
 - - - -
 
-**Data Scientist**
-**The Walt Disney Company - Orlando, FL**                      October 2018 - Present
+**Data Scientist**  October 2018 - Present <br>
+**The Walt Disney Company - Orlando, FL**             
 > * Create bullet points that reflect action, make the action word the first word in the bullet point
 > * Communicate important job responsibilities that are relevant to the position at hand
 > * Use numbers where applicable. Don't just say 'I increased sales' say 'I increased sales by 10%'
