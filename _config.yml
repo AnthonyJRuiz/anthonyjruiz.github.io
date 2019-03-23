@@ -14,7 +14,7 @@ baseurl: ""
 # Of course don't forget to change the username and projectname to YOUR username and project
 
 # Name of website
-#title: Anthony J. Ruiz
+title: Anthony J. Ruiz
 
 # Short description of your site
 description: Linear in the parameters
@@ -27,7 +27,7 @@ navbar-links:
   Tutorials:
   Shiny Dashboards:
     - Boston Housing: "https://anthonyjruiz.shinyapps.io/boston_housing_app/"
-  Resume:
+  Resume: "resume"
 
 #  Author's home: "http://deanattali.com"
 
