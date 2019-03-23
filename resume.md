@@ -3,7 +3,6 @@ layout: page
 ---
 <center><span style="font-family:Didot; font-size:2.5em;">Anthony J. Ruiz</span></center>
 <center><span style="font-family:Didot; font-size:1.5em;">Location: Orlando, FL | Email: ruiz.anthonyj@gmail.com</span></center>
-</span></center>
 
 
 <span style="font-family:Didot; font-size:2em;">Education</span>
@@ -12,8 +11,8 @@ layout: page
 
 **Master of Arts - Economics**                                August 2014 - May 2016
 University of South Florida - Tampa, FL
-> 1. **Relevant Courses**: econometrics, biostats I, biostats II, calculus I-III, Time Series Analysis
-> 2. Member of Omicron Delta Epsilon, International Society for Economics
+> * **Relevant Courses**: Econometrics, Biostatistics I, Biostatistics II, Time Series Forecasting and Analysis, Microeconomics, Macroeconomics, Mathematics for Economist (Calculus I-III, Linear Algebra)
+> *  Member of Omicron Delta Epsilon, International Society for Economics
 
 
 <span style="font-family:Didot; font-size:2em;"> Experience</span>
