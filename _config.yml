@@ -27,7 +27,7 @@ navbar-links:
   Tutorials:
   Shiny Dashboards:
     - Boston Housing: "https://anthonyjruiz.shinyapps.io/boston_housing_app/"
-  Resume: "resume"
+  # Resume: "resume"
 
 #  Author's home: "http://deanattali.com"
 
