@@ -6,7 +6,7 @@ subtitle: Why you'd want to go on a date with me
 
 I am currently a data scientist currently working at the Walt Disney company. I have both an undergraduate and graduate degrees in economics from the University of South Florida. I love traveling, economics, statistics and memes...
 
-You can find my most recent resume [here](anthonyjruiz.github.io/filesAnthonyRuizResume 20171213)
+You can find my most recent resume [here](https://anthonyjruiz.github.io/files/AnthonyRuizResume 20171213.pdf)
 
 ```javascript
 library(tidyverse)
