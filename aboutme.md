@@ -1,7 +1,7 @@
 ---
 layout: page
 title: About me
-bigimg: "img/bookshelf.jpg"
+bigimg: img/bookshelf.jpg
 ---
 
 I am currently a data scientist working at the Walt Disney Company. My formal education is in Economics and statistics. I am an avid learner and enjoy sharing my knowledge with whoever is willing to listen. I love traveling and exploring places I've never been to.
