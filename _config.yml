@@ -23,8 +23,8 @@ description: Linear in the parameters
 
 # List of links in the navigation bar
 navbar-links:
-  About Me: "aboutme"
-  Tutorials:
+  Home: 
+  Posts: "posts"
   Shiny Dashboards:
     - Boston Housing: "https://anthonyjruiz.shinyapps.io/boston_housing_app/"
   # Resume: "resume"
