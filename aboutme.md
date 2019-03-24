@@ -1,12 +1,13 @@
 ---
 layout: page
 title: About me
-subtitle: Why you'd want to go on a date with me
 ---
 
-I am currently a data scientist currently working at the Walt Disney company. I have both an undergraduate and graduate degrees in economics from the University of South Florida. I love traveling, economics, statistics and memes...
+I am currently a data scientist working at the Walt Disney Company. My formal education is in Economics and statistics. I am an avid learner and enjoy sharing my knowledge with whoever is willing to listen. I love traveling and exploring places I've never been to.
 
-You can find my most recent resume [here](https://anthonyjruiz.github.io/files/AnthonyRuizResume 20171213.pdf)
+You can find my official most recent resume [here](https://anthonyjruiz.github.io/files/AnthonyRuizResume 20171213.pdf)
+
+or in R format below
 
 ```javascript
 library(tidyverse)
@@ -22,6 +23,8 @@ aboutMe <- anthonyRuiz %>%
       case_when(
         year > 2018 & employer == 'The Walt Disney Company' ~ 'Data Scientist',
         year < 2018 & employer == 'Electronic Arts' ~ 'Data Analyst',
-        TRUE ~ NULL)
+        TRUE ~ NULL) %>%
+    rProgrammingFlag = if_else(!is.na(rskills),1,0)) %>%
+    sqlProgrammingFlag = if_else(!is.na(sql),1,0))
       )      
 ```
