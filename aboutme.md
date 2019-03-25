@@ -6,7 +6,7 @@ bigimg: /img/bookshelf.jpg
 
 I am currently a data scientist working at the Walt Disney Company. My formal education is in Economics and statistics. I am an avid learner and enjoy sharing my knowledge with whoever is willing to listen. I love traveling and exploring places I've never been to.
 
-You can find my official most recent resume [here](https://anthonyjruiz.github.io/files/AnthonyRuizResume 20171213.pdf)
+You can find my official most recent resume [here](https://anthonyjruiz.github.io/files/Anthony J Ruiz - Resume.pdf)
 
 or in R format below
 
