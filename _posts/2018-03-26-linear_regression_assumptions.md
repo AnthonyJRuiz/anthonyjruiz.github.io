@@ -11,7 +11,7 @@ Linear regression is probably one of the most used statistical techniques in all
 
 However Contrary to what many people think, there are a certain set of assumptions that must be satisfied in order to kind of believe you model. These are called the Gauss-Markov assumptions which is named after mathematicians Carl Friedrich Gauss and Andrey Markov.
 
-![mvp]('img/da_real_mvp.jpg')
+![mvp](/img/da_real_mvp.jpg)
 
   1. Linear in the parameters
   2. Random Sampling
