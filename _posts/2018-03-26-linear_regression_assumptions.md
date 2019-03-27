@@ -8,10 +8,12 @@ comments: true
 
 Linear regression is probably one of the most used statistical techniques in all of econometrics/data science. There are a couple reasons for this; its relatively easy to interpret the model output, its not computationally expensive and...
 
+<p style="text-align:center">
+<img src="/img/da_real_mvp.jpg" alt="MVP" />
+</p>
+
 
 However Contrary to what many people think, there are a certain set of assumptions that must be satisfied in order to kind of believe you model. These are called the Gauss-Markov assumptions which is named after mathematicians Carl Friedrich Gauss and Andrey Markov.
-
-![mvp](img/da_real_mvp.jpg)
 
   1. Linear in the parameters
   2. Random Sampling
