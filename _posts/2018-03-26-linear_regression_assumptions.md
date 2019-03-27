@@ -1,19 +1,16 @@
 ---
 layout: post
-title: Gauss-Markov Assumptions
-tags: [Econometrics]
-comments: true
-# image: /img/da_real_mvp.jpg
+title: Linear Regression Misconceptions
+tags: [Econometrics, Data Science, Statistics, Memes]
 ---
 
-Linear regression is probably one of the most used statistical techniques in all of econometrics/data science. There are a couple reasons for this; its relatively easy to interpret the model output, its not computationally expensive and...
+Linear regression is probably one of the most widely used statistical techniques in all of econometrics/data science. There are a couple reasons for this; its relatively easy and intuitive to interpret the model output, it's not computationally expensive... etc.
 
 <p style="text-align:center">
 <img src="/img/da_real_mvp.jpg" alt="MVP" />
 </p>
 
-
-However Contrary to what many people think, there are a certain set of assumptions that must be satisfied in order to kind of believe you model. These are called the Gauss-Markov assumptions which is named after mathematicians Carl Friedrich Gauss and Andrey Markov.
+In order to properly utilize this technique there are a certain set of assumptions that must be satisfied. These assumptions are known as the Gauss-Markov assumptions of Multiple Linear Regression which are named after some old dudes, Friedrich Gauss and Andrey Markov. These assumptions are as follows:
 
   1. Linear in the parameters
   2. Random Sampling
@@ -21,6 +18,6 @@ However Contrary to what many people think, there are a certain set of assumptio
   4. Zero conditional mean - the expected value of u given x = 0
   5. Homoskedasticity
 
+With it being one of the most widely used techniques, its shocking to see how many people in practice don't even consider these assumptions when doing their modeling, and for those that do, how misinformed they are with the true meaning of them. I've read some of the craziest things on forums like [reddit](https://reddit.com/r/datascience). I just wanted to quickly talk through some of these assumptions that I see some of the most egregious misunderstandings.
 
-
-With it being one of the most used techniques, it's shocking to see how many people are misinformed on these assumptions. I wonder how many people are incorrectly using one of the most simplest techniques out there in the wild. I've read things on forums like [reddit](https://reddit.com/r/datascience) like you can only model a linear relationship (referring to the first assumption), how you cant have multicollinearity etc. I just wanted to quickly talk through the assumptions and their meanings...
+###Linear in the parameters
