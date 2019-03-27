@@ -20,4 +20,5 @@ In order to properly utilize this technique there are a certain set of assumptio
 
 With it being one of the most widely used techniques, its shocking to see how many people in practice don't even consider these assumptions when doing their modeling, and for those that do, how misinformed they are with the true meaning of them. I've read some of the craziest things on forums like [reddit](https://reddit.com/r/datascience). I just wanted to quickly talk through some of these assumptions that I see some of the most egregious misunderstandings.
 
-###Linear in the parameters
+## Linear in the parameters
+This is probably this most misconstrued of all the assumptions, most likely due to the words "*linear*." I often see people say you can **only** use this if the relationship you're modeling is linear.
