@@ -26,7 +26,7 @@ navbar-links:
   Blog:
   About Me: "aboutme"
   Shiny Dashboards:
-    - Boston Housing: "https://anthonyjruiz.shinyapps.io/boston_housing_app/"
+    - NBA Players: "https://anthonyjruiz.shinyapps.io/nba_player/"
   # Resume: "resume"
 
 #  Author's home: "http://deanattali.com"
