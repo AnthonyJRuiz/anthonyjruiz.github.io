@@ -2,7 +2,7 @@
 title: "Linear in the parameters"
 author: "Anthony Ruiz"
 date: "6/11/2019"
-output: html_document
+output: md_document
 ---
 
 
@@ -48,10 +48,4 @@ With it being one of the most widely used techniques, its shocking to see how ma
 
 ## Linear in the parameters
 This is probably this most misconstrued of all the assumptions, most likely due to the words "*linear*." I often see people say you can **only** use this if the relationship you're modeling is linear.
-
-
-
-```{r, include = FALSE}
-knit("linear.Rmd")
-```
 
