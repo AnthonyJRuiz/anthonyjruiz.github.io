@@ -10,7 +10,7 @@ Hope you enjoy...
 
 You can find my official most recent resume [here](https://anthonyjruiz.github.io/files/Anthony J Ruiz - Resume.pdf)
 
-or in R format below
+or in dplyr format below :)
 
 ```javascript
 library(tidyverse)
