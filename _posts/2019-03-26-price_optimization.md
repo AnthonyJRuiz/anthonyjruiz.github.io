@@ -7,49 +7,17 @@ Package Load
 ------------
 
     library(dplyr)
-
-    ## 
-    ## Attaching package: 'dplyr'
-
-    ## The following objects are masked from 'package:stats':
-    ## 
-    ##     filter, lag
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     intersect, setdiff, setequal, union
-
     library(ggplot2)
     library(stats) #optimization
     library(broom) #tidy model output
     library(plotly) #make interactive ggplot visuals
 
-    ## 
-    ## Attaching package: 'plotly'
-
-    ## The following object is masked from 'package:ggplot2':
-    ## 
-    ##     last_plot
-
-    ## The following object is masked from 'package:stats':
-    ## 
-    ##     filter
-
-    ## The following object is masked from 'package:graphics':
-    ## 
-    ##     layout
-
-    getwd()
-
-    ## [1] "/Users/AnthonyRuiz/R Repository/anthonyjruiz.github.io/markdown_files"
-
 Data
 ----
 
-For this exercise we are using beef sales data that ranges from 1977 -
-1999.
-
-    demand.data <- read.csv("https://raw.githubusercontent.com/susanli2016/Machine-Learning-with-Python/master/beef.csv")
+For this exercise we are using beef sales data by quarter that ranges
+from 1977 - 1999. We can take a quick look at what that looks like to
+get familiar with our dataset.
 
     head(demand.data)
 
@@ -72,7 +40,12 @@ demand for beef - we see a pretty clear negative relationship here.
         geom_point() +
         geom_smooth(method = "lm")
 
-![](price_optimization_files/figure-markdown_strict/unnamed-chunk-4-1.png)
+
+
+<p style="text-align:center">
+<img src="/img/blog_images/price_optimization_files/unnamed-chunk-4-1.png" alt="plot1"/>
+</p>
+
 
 Estimating the demand equation
 ------------------------------
@@ -91,10 +64,14 @@ uncover a negative relationship.
 
     demand.model <- lm(Quantity ~ Price, data = demand.data)
 
-Taking a look at our model output and model diagnostics we get…
+For the sake of brevity, we are going to assume that this model is
+simply amazing. We would normally be checking our model diagnostics,
+thinking from a theory standpoint if we have the correct variables in
+our model violating any of the Gauss-markov assumptions of regression
+etc…
 
-How to analyze the model diagnostics will be a post for another day,
-let’s just assume this model is amazing.
+How to evaluate the model is any good or not will be a post for another
+day.
 
     summary(demand.model)
 
@@ -117,19 +94,18 @@ let’s just assume this model is amazing.
     ## Multiple R-squared:  0.9011, Adjusted R-squared:    0.9 
     ## F-statistic: 811.2 on 1 and 89 DF,  p-value: < 2.2e-16
 
-    plot(demand.model)
-
-![](price_optimization_files/figure-markdown_strict/unnamed-chunk-6-1.png)![](price_optimization_files/figure-markdown_strict/unnamed-chunk-6-2.png)![](price_optimization_files/figure-markdown_strict/unnamed-chunk-6-3.png)![](price_optimization_files/figure-markdown_strict/unnamed-chunk-6-4.png)
-
 Demand Equation
 ---------------
 
-Directly from our model output we can find our demand equation… That is.
+As we see from our model output above, now we have a demand equation.
 
 `Qdemand = 30.05 - 0.04 x Price`
 
-This says, for every $1 increase in price, quantity of beef sales
-decreases by .04 (units?) whatever a unit of beef is…
+In english this says, for every $1 increase in price, on average the
+quantity of beef sales will decrease by .04 (units?) whatever a unit of
+beef is…
+
+Now we are going to save that equation as a function for later use
 
     demand.equation <- function(x){
       (x-80)*(30.05-.0465*x)
@@ -140,39 +116,51 @@ Here comes the calculus…
 
 Sir Issac Newton would be proud!…
 
-Now how I’ve seen this done by others (and by all means is correct) is
-typcially they will generate a vector of prices, say $0 - $1000 and run
-that equation at each price and see what the estimated revenue will be…
-That definitely works, but there’s a far more efficient and
-“sophisticated” way to go about this…
+Now this is where the example is going to diverge from what I’ve seen
+others do… And by all means the way others have done it is completely
+correct - there’s 1,000 ways to skin a sheep. What I’ve seen typically
+done is people will generate a vector of arbitrary prices, say $0 -
+$1,000 and evaluate their demand equation at each price and see what the
+estimated revenue will be. This definitely works, but in my opinion
+there’s a far more efficient and sophisticated way to solve this
+problem. After all, I dont want to let all those hours studying math go
+to waste.
 
-If you remember back to your calculus classes… It’s all about
-derivatives. In this instance we can take the first derivative of our
-demand function with respect to price, set that equation equal to 0 and
-solve for price. Setting the function = 0 and solving will yield what
-the revenue maximizing price will be.
+If you remember back to your calculus classes - one of the main focuses
+is derivatives. Now, here’s a real life, useful application of all that
+hard work.
+
+In this instance we can take the first derivative of our demand function
+with respect to price, set that equation equal to 0 and solve for price.
+Setting the function = 0 and solving will yield what the revenue
+maximizing price will be.
 
 Setting it equal to 0 means the slope of the line at the price is flat…
-We’ll see an example below.
-
-lucky for us, we dont have to handwrite our math and we have this
-optimize function out of the stats package that will do this work for
-us…
+We’ll see an example below. Lucky for us, we dont have to handwrite our
+math and we have this optimize function out of the stats package that
+will do all the heavy lifting for us.
 
     profit.max <- stats::optimize(demand.equation, lower = 0, upper = 500, maximum = TRUE)
     print(profit.max$maximum)
 
     ## [1] 363.1183
 
+Using the above function, we see that our revenue maximizing price is
+$363.
+
 Total Revenue Curve
 -------------------
 
-In this example we are optimizing price to maximize revenue… We can also
-extend this and maximize profit, for that we will just need to include
-cost in our equation…
+In this particular example we are optimizing price to maximize revenue.
+I understand that’s not always the metric that we are trying to
+maximize. We can also extend this and maximize profit, for that we will
+just need to include cost in our equation and obtain a profit function
+rather than just a total revenue function. (just a bit more algebra)
 
       ggplot(data.frame(price = 0:500), aes(price)) +
         stat_function(fun = demand.equation, geom = 'line') +
         labs(title = "Total Revenue Curve", x = "Price", y = "Total Revenue")
 
-![](price_optimization_files/figure-markdown_strict/unnamed-chunk-9-1.png)
+<p style="text-align:center">
+<img src="/img/blog_images/price_optimization_files/unnamed-chunk-9-1.png" alt="plot2"/>
+</p>
