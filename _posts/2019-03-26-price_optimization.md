@@ -1,3 +1,9 @@
+---
+layout: post
+title: Price Optimization using Econometrics and Calculus
+tags: [Econometrics, Data Science, Statistics, Memes]
+---
+
 I’ve seen a few people do quick examples of price optimization problems,
 but one thing I havent seen done is using calculus to obtain the optimal
 price for a good. In this extremely quick example im going to
