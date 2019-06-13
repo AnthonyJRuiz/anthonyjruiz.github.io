@@ -105,6 +105,8 @@ Demand Equation
 
 As we see from our model output above, now we have a demand equation.
 
+$$Q_d = \beta_0 + \beta_1Price$$
+
 `Qdemand = 30.05 - 0.04 x Price`
 
 In english this says, for every $1 increase in price, on average the
