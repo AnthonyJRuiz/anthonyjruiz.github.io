@@ -105,9 +105,8 @@ Demand Equation
 
 As we see from our model output above, now we have a demand equation.
 
-<p style="text-align:center">
-![](https://latex.codecogs.com/gif.latex?%5Cinline%20%5Cdpi%7B100%7D%20%5Clarge%20%24%24TR%20%3D%20%5Cbeta_0P%20&plus;%20%5Cbeta_1P%5E2%20%24%24)
-</p>
+![](https://latex.codecogs.com/gif.latex?%5Cdpi%7B100%7D%20%5Clarge%20%24%24TR%20%3D%20%5Cbeta_0P%20&plus;%20%5Cbeta_1P%5E2%20%24%24)
+
 
 `Qdemand = 30.05 - 0.04 x Price`
 
