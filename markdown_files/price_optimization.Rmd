@@ -1,0 +1,155 @@
+---
+title: "Price Optimization"
+author: "Anthony Ruiz"
+date: "6/11/2019"
+output:
+  html_document: default
+  md_document: default
+  pdf_document: default
+---
+
+I've seen a few people do examples of price optimization problems, however one thing I havent seen done is using calculus to obtain the optimal price for the product/service. In this quick example im going to demonstrate how to do this.
+
+## Package Load
+```{r, warning = FALSE, message = FALSE}
+library(dplyr)
+library(ggplot2)
+library(stats) #optimization
+library(broom) #tidy model output
+library(scales)
+library(stargazer)
+```
+
+## Data
+For this exercise we are using beef sales data by quarter that ranges from 1977 - 1999. We can take a quick look at what that looks like to get familiar with our dataset.
+
+```{r include = FALSE}
+demand.data <- read.csv("https://raw.githubusercontent.com/susanli2016/Machine-Learning-with-Python/master/beef.csv")
+```
+
+```{r}
+head(demand.data)
+```
+We can see average price of beef is $250 over the time period.
+
+```{r}
+summary(demand.data)
+```
+
+
+## Data Exploration
+
+Here we are just taking a look at the cross-sectional relationship between price and demand for beef, there's a pretty clear negative relationship.
+
+```{r, fig.align = 'center'}
+demand.data %>%
+  ggplot(aes(Quantity, Price)) +
+    geom_point() 
+```
+
+Looking at aggregated sales by year and overlaying price to look at the relationship.
+
+```{r, fig.align = 'center'}
+demand.data %>%
+  group_by(Year) %>%
+  summarise(totalQuantity = sum(Quantity),
+            avgPrice = mean(Price)) %>%
+  ggplot() +
+    geom_line(aes(Year, totalQuantity)) +
+    geom_step(aes(Year, avgPrice), color = "red", linetype = "dashed") +
+    labs(title = "Beef Sales by Year", x = "Year", y = "Quantity Sold") +
+    scale_y_continuous("Quantity(B)", sec.axis = sec_axis(~. / 2, name = "Price ($)")) +
+    theme()
+```
+
+## Estimating the demand equation
+
+Now that we have our data its time to do the modeling
+
+The model specification, that is, which variables should be included or excluded in your model is the **most important** part of this entire process (aside from having reliable data - im sure you've heard of garbage in garbage out). The optimization on the back end is relatively easy, it's just a bit of algebra and calculus and with R really it's just one line of code. If our model is misspecified our coefficients will be biased, that is, our estimated effect of price on demand will be inaccurate and the resulting optimization will be incorrect. 
+
+In plain english this means the price you set will be wrong and you will not be maximizing revenue.
+
+As an example, lets say we're modeling beef demand and we don't include the price of chicken (a substitue) in our model. If beef price stays the same and the price of chicken decreases, consumers will start to buy more chicken as it's gotten relatively cheaper to beef. In a model that doesnt include the price of chicken our price effect will be wrong.
+
+Since we are trying to uncover a casual relationship between price and demand we must think carefully and critically about the other variables that influence demand. Also, we must be cognizant to make sure we are not violating the [Gauss-Markov assumptions](https://en.wikipedia.org/wiki/Gauss–Markov_theorem) which ill cover in more detail in another post. *In the example above if we had an omitted variable, like the price of chicken, we would be violating the strict exogeniety assumption.*
+
+```{r}
+demand.model <- lm(Quantity ~ Price + Year, data = demand.data)
+```
+
+For the sake of brevity, we are going to assume that we only the price of beef in our model. Also, we are going to assume that this model is amazing. We've controlled for all the necessary variables, We would normally be checking our model diagnostics, thinking from a theoretical standpoint if our model is correctly specified - validating if our model is violating any of the Gauss-markov assumptions of regression etc...
+
+How to evaluate the model is any good or not will be a post for another day.
+
+```{r, results}
+stargazer(demand.data, type = "html")
+summary(demand.model)
+```
+
+## Demand Equation
+
+Here is a general demand function:
+
+$$Q = \beta_0 + \beta_1Price$$
+
+Here is our estimated demand function coming straight from our model output.
+
+$$Q = 30.05 - .0465P$$
+
+In english this says, for every $1 increase in price, on average the quantity of beef sales will decrease by .04 (units?) whatever a unit of beef is measure in this dataset.
+
+Lets save our demand function for later use...
+
+```{r}
+demand.equation <- function(x){
+  (x)*(30.05-.0465*x)
+}
+```
+
+## Price Optimization
+
+Now this is where the example is going to diverge from what I've seen others do... By all means the way others have done it is completely correct. What I've seen typically done is people will generate a vector of arbitrary prices, say $0 - $1,000 and evaluate their demand equation at each price and see what the estimated revenue will be. This definitely works, but in my opinion there's a far more efficient and sophisticated way to solve this problem. After all, I dont want to let all those hours studying math go to waste. 
+
+## The Math!
+
+In this example we want to maximize revenue of beef sales with respect to the price of beef. We could maximize profit and in that case we would consider costs in our equation, however for this example we are going to stick with revenue.
+
+If we were going to understand what our total revenue (TR) of sales was it would simply be the quanity of products sold (Q) multiplied by the price of those products (P), the resulting equation is below.
+
+$$TR = PQ$$
+
+
+Remember, we have an equation for Q - which is our model we just estimated above. We can substitue our estimated demand function in the equation above. Once that's done we have:
+
+$$ TR = P(30.05 - .0465P)$$
+
+After some alebra we now have our estimated total revenue function for beef demand.
+
+$$ TR = 30.05P - .0465P^2$$
+
+
+
+Now for some calculus. The sign of our first derivative is very imformative, if its positive that means the slope is increasing, if its negative our line is decreasing and if its 0 that means its flat. 
+In this instance we can take the first derivative of our demand function with respect to price, set that equation equal to 0 and solve for price. Setting the function = 0 and solving will yield what the revenue maximizing price will be.
+
+Setting it equal to 0 means the slope of the line at the price is flat... We'll see an example below. Lucky for us, we dont have to handwrite our math and we have this optimize function out of the stats package that will do all the heavy lifting for us.
+
+```{r}
+stats::optimize(demand.equation, lower = 0, upper = 500, maximum = TRUE)$maximum
+```
+
+Using the above function, which is doing the calculus for us, we see that our revenue maximizing price is $323.
+
+
+## Total Revenue Curve
+
+In this particular example we are optimizing price to maximize revenue. I understand that's not always the metric that we are trying to maximize. We can also extend this and maximize profit, for that we will just need to include cost in our equation and obtain a profit function rather than just a total revenue function. (just a bit more algebra)
+
+```{r, fig.align = 'center'}
+  ggplot(data.frame(price = 0:500), aes(price)) +
+    stat_function(fun = demand.equation, geom = 'line') +
+    labs(title = "Total Revenue Curve", x = "Beef Price", y = "Total Revenue ($)") +
+    scale_y_continuous(labels = comma)
+```
+
