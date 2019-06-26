@@ -14,10 +14,12 @@ I've seen a few people do examples of price optimization problems, however one t
 ```{r, warning = FALSE, message = FALSE}
 library(dplyr)
 library(ggplot2)
-library(stats) #optimization
-library(broom) #tidy model output
-library(scales)
+library(stats)
+library(scales) 
+library(plotly)
 library(stargazer)
+library(kableExtra)
+library(htmltools)
 ```
 
 ## Data
@@ -28,12 +30,16 @@ demand.data <- read.csv("https://raw.githubusercontent.com/susanli2016/Machine-L
 ```
 
 ```{r}
-head(demand.data)
+head(demand.data) %>%
+  kable() %>%
+  kable_styling(bootstrap_options = "striped", full_width = F)
 ```
 We can see average price of beef is $250 over the time period.
 
-```{r}
-summary(demand.data)
+```{r,}
+summary(demand.data) %>%
+  kable() %>%
+  kable_styling(bootstrap_options = "striped", full_width = F)
 ```
 
 
@@ -42,29 +48,36 @@ summary(demand.data)
 Here we are just taking a look at the cross-sectional relationship between price and demand for beef, there's a pretty clear negative relationship.
 
 ```{r, fig.align = 'center'}
-demand.data %>%
-  ggplot(aes(Quantity, Price)) +
-    geom_point() 
+div(
+  ggplotly(demand.data %>%
+    ggplot(aes(Quantity, Price)) +
+      geom_point() +
+      scale_y_continuous(labels = dollar)
+  ), align = "center"
+)
 ```
 
 Looking at aggregated sales by year and overlaying price to look at the relationship.
 
-```{r, fig.align = 'center'}
-demand.data %>%
-  group_by(Year) %>%
-  summarise(totalQuantity = sum(Quantity),
-            avgPrice = mean(Price)) %>%
-  ggplot() +
-    geom_line(aes(Year, totalQuantity)) +
-    geom_step(aes(Year, avgPrice), color = "red", linetype = "dashed") +
-    labs(title = "Beef Sales by Year", x = "Year", y = "Quantity Sold") +
-    scale_y_continuous("Quantity(B)", sec.axis = sec_axis(~. / 2, name = "Price ($)")) +
-    theme()
+```{r,}
+div(
+  ggplotly(
+    demand.data %>%
+      group_by(Year) %>%
+      summarise(totalQuantity = sum(Quantity),
+                avgPrice = mean(Price)) %>%
+      ggplot() +
+        geom_line(aes(Year, totalQuantity)) +
+        geom_step(aes(Year, avgPrice), color = "red", linetype = "dashed") +
+        labs(title = "Beef Sales by Year", x = "Year", y = "Quantity Sold") +
+        scale_y_continuous("Quantity(B)", sec.axis = sec_axis(~. / 2, name = "Price ($)"))
+  ), align = "center"
+)
 ```
 
 ## Estimating the demand equation
 
-Now that we have our data its time to do the modeling
+Now that were a bit more familiar with our data lets do the modeling...
 
 The model specification, that is, which variables should be included or excluded in your model is the **most important** part of this entire process (aside from having reliable data - im sure you've heard of garbage in garbage out). The optimization on the back end is relatively easy, it's just a bit of algebra and calculus and with R really it's just one line of code. If our model is misspecified our coefficients will be biased, that is, our estimated effect of price on demand will be inaccurate and the resulting optimization will be incorrect. 
 
@@ -75,17 +88,42 @@ As an example, lets say we're modeling beef demand and we don't include the pric
 Since we are trying to uncover a casual relationship between price and demand we must think carefully and critically about the other variables that influence demand. Also, we must be cognizant to make sure we are not violating the [Gauss-Markov assumptions](https://en.wikipedia.org/wiki/Gauss–Markov_theorem) which ill cover in more detail in another post. *In the example above if we had an omitted variable, like the price of chicken, we would be violating the strict exogeniety assumption.*
 
 ```{r}
-demand.model <- lm(Quantity ~ Price + Year, data = demand.data)
+demand.model <- lm(Quantity ~ Price, data = demand.data)
 ```
 
 For the sake of brevity, we are going to assume that we only the price of beef in our model. Also, we are going to assume that this model is amazing. We've controlled for all the necessary variables, We would normally be checking our model diagnostics, thinking from a theoretical standpoint if our model is correctly specified - validating if our model is violating any of the Gauss-markov assumptions of regression etc...
 
 How to evaluate the model is any good or not will be a post for another day.
 
-```{r, results}
-stargazer(demand.data, type = "html")
-summary(demand.model)
+```{r message=FALSE, include=FALSE, warning=FALSE}
+stargazer(demand.model, type = "html", out = "demand_model.txt", title = "Beef Demand Model")
 ```
+
+<div align = "center">
+<table style="text-align:center"><caption><strong>Beef Demand Model</strong></caption>
+<tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"></td><td><em>Dependent variable:</em></td></tr>
+<tr><td></td><td colspan="1" style="border-bottom: 1px solid black"></td></tr>
+<tr><td style="text-align:left"></td><td>Quantity</td></tr>
+<tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">Price</td><td>-0.043<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.003)</td></tr>
+<tr><td style="text-align:left"></td><td></td></tr>
+<tr><td style="text-align:left">Year</td><td>-0.024</td></tr>
+<tr><td style="text-align:left"></td><td>(0.018)</td></tr>
+<tr><td style="text-align:left"></td><td></td></tr>
+<tr><td style="text-align:left">Constant</td><td>76.283<sup>**</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(34.620)</td></tr>
+<tr><td style="text-align:left"></td><td></td></tr>
+<tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">Observations</td><td>91</td></tr>
+<tr><td style="text-align:left">R<sup>2</sup></td><td>0.903</td></tr>
+<tr><td style="text-align:left">Adjusted R<sup>2</sup></td><td>0.901</td></tr>
+<tr><td style="text-align:left">Residual Std. Error</td><td>0.571 (df = 88)</td></tr>
+<tr><td style="text-align:left">F Statistic</td><td>410.083<sup>***</sup> (df = 2; 88)</td></tr>
+<tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"><em>Note:</em></td><td style="text-align:right"><sup>*</sup>p<0.1; <sup>**</sup>p<0.05; <sup>***</sup>p<0.01</td></tr>
+</table>
+</div>
+
+
+
 
 ## Demand Equation
 
@@ -141,15 +179,22 @@ stats::optimize(demand.equation, lower = 0, upper = 500, maximum = TRUE)$maximum
 
 Using the above function, which is doing the calculus for us, we see that our revenue maximizing price is $323.
 
+In this example we're optimizing total revenue of goods sold. We can also extend this and maximize profit, for that we will just need to include cost in our equation and obtain a profit function rather than just a total revenue function (just a tiny bit more algebra).
 
 ## Total Revenue Curve
 
-In this particular example we are optimizing price to maximize revenue. I understand that's not always the metric that we are trying to maximize. We can also extend this and maximize profit, for that we will just need to include cost in our equation and obtain a profit function rather than just a total revenue function. (just a bit more algebra)
+We can visually inspect what our total revenue would be over all the price points. We can see at a Price of ~$323 we estimate that we'll have just under 5K in revenue.
+
 
 ```{r, fig.align = 'center'}
-  ggplot(data.frame(price = 0:500), aes(price)) +
-    stat_function(fun = demand.equation, geom = 'line') +
-    labs(title = "Total Revenue Curve", x = "Beef Price", y = "Total Revenue ($)") +
-    scale_y_continuous(labels = comma)
+div(
+  ggplotly(
+    ggplot(data.frame(price = 0:500), aes(price)) +
+      stat_function(fun = demand.equation, geom = 'line') +
+      labs(title = "Total Revenue Curve", x = "Beef Price", y = "Total Revenue ($)") +
+      scale_y_continuous(labels = dollar) +
+      scale_x_continuous(labels = dollar)
+    ), align = "center"
+)
 ```
 
