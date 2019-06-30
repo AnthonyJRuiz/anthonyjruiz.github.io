@@ -37,6 +37,9 @@ get familiar with our dataset.
 
 
 
+![](/Users/AnthonyRuiz/R Repository/anthonyjruiz.github.io/img/blog_images/price_optimization_files/table.html)
+
+
 <p style="text-align:center">
 <img src="/img/blog_images/price_optimization_files/table.html" alt="table1"/>
 </p>
@@ -86,26 +89,28 @@ etc…
 How to evaluate the model is any good or not will be a post for another
 day.
 
-    summary(demand.model)
-
-    ## 
-    ## Call:
-    ## lm(formula = Quantity ~ Price, data = demand.data)
-    ## 
-    ## Residuals:
-    ##      Min       1Q   Median       3Q      Max 
-    ## -1.05150 -0.44397  0.05104  0.38968  1.34430 
-    ## 
-    ## Coefficients:
-    ##              Estimate Std. Error t value Pr(>|t|)    
-    ## (Intercept) 30.051486   0.413355   72.70   <2e-16 ***
-    ## Price       -0.046511   0.001633  -28.48   <2e-16 ***
-    ## ---
-    ## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-    ## 
-    ## Residual standard error: 0.5734 on 89 degrees of freedom
-    ## Multiple R-squared:  0.9011, Adjusted R-squared:    0.9 
-    ## F-statistic: 811.2 on 1 and 89 DF,  p-value: < 2.2e-16
+<div align = "center">
+<table style="text-align:center"><caption><strong>Beef Demand Model</strong></caption>
+<tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"></td><td><em>Dependent variable:</em></td></tr>
+<tr><td></td><td colspan="1" style="border-bottom: 1px solid black"></td></tr>
+<tr><td style="text-align:left"></td><td>Quantity</td></tr>
+<tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">Price</td><td>-0.043<sup>***</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(0.003)</td></tr>
+<tr><td style="text-align:left"></td><td></td></tr>
+<tr><td style="text-align:left">Year</td><td>-0.024</td></tr>
+<tr><td style="text-align:left"></td><td>(0.018)</td></tr>
+<tr><td style="text-align:left"></td><td></td></tr>
+<tr><td style="text-align:left">Constant</td><td>76.283<sup>**</sup></td></tr>
+<tr><td style="text-align:left"></td><td>(34.620)</td></tr>
+<tr><td style="text-align:left"></td><td></td></tr>
+<tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left">Observations</td><td>91</td></tr>
+<tr><td style="text-align:left">R<sup>2</sup></td><td>0.903</td></tr>
+<tr><td style="text-align:left">Adjusted R<sup>2</sup></td><td>0.901</td></tr>
+<tr><td style="text-align:left">Residual Std. Error</td><td>0.571 (df = 88)</td></tr>
+<tr><td style="text-align:left">F Statistic</td><td>410.083<sup>***</sup> (df = 2; 88)</td></tr>
+<tr><td colspan="2" style="border-bottom: 1px solid black"></td></tr><tr><td style="text-align:left"><em>Note:</em></td><td style="text-align:right"><sup>*</sup>p<0.1; <sup>**</sup>p<0.05; <sup>***</sup>p<0.01</td></tr>
+</table>
+</div>
 
 Demand Equation
 ---------------
