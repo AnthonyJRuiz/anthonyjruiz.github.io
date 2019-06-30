@@ -35,6 +35,13 @@ get familiar with our dataset.
     ## 5 1978       1  22.0441 160.0000
     ## 6 1978       2  21.7602 182.5333
 
+
+
+<p style="text-align:center">
+<img src="/img/blog_images/price_optimization_files/table.html" alt="table1"/>
+</p>
+
+
 Exploration
 -----------
 
