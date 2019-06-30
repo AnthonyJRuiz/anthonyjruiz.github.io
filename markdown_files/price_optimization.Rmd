@@ -6,6 +6,8 @@ output:
   html_document: default
   md_document: default
   pdf_document: default
+editor_options: 
+  chunk_output_type: console
 ---
 
 I've seen a few people do examples of price optimization problems, however one thing I havent seen done is using calculus to obtain the optimal price for the product/service. In this quick example im going to demonstrate how to do this.
@@ -34,6 +36,7 @@ head(demand.data) %>%
   kable() %>%
   kable_styling(bootstrap_options = "striped", full_width = F)
 ```
+
 We can see average price of beef is $250 over the time period.
 
 ```{r,}
@@ -48,31 +51,24 @@ summary(demand.data) %>%
 Here we are just taking a look at the cross-sectional relationship between price and demand for beef, there's a pretty clear negative relationship.
 
 ```{r, fig.align = 'center'}
-div(
-  ggplotly(demand.data %>%
-    ggplot(aes(Quantity, Price)) +
-      geom_point() +
-      scale_y_continuous(labels = dollar)
-  ), align = "center"
-)
+demand.data %>%
+  ggplot(aes(Quantity, Price)) +
+    geom_point() +
+    scale_y_continuous(labels = dollar)
 ```
 
 Looking at aggregated sales by year and overlaying price to look at the relationship.
 
 ```{r,}
-div(
-  ggplotly(
-    demand.data %>%
-      group_by(Year) %>%
-      summarise(totalQuantity = sum(Quantity),
-                avgPrice = mean(Price)) %>%
-      ggplot() +
-        geom_line(aes(Year, totalQuantity)) +
-        geom_step(aes(Year, avgPrice), color = "red", linetype = "dashed") +
-        labs(title = "Beef Sales by Year", x = "Year", y = "Quantity Sold") +
-        scale_y_continuous("Quantity(B)", sec.axis = sec_axis(~. / 2, name = "Price ($)"))
-  ), align = "center"
-)
+demand.data %>%
+  group_by(Year) %>%
+  summarise(totalQuantity = sum(Quantity),
+            avgPrice = mean(Price)) %>%
+  ggplot() +
+    geom_line(aes(Year, totalQuantity)) +
+    geom_step(aes(Year, avgPrice), color = "red", linetype = "dashed") +
+    labs(title = "Beef Sales by Year", x = "Year", y = "Quantity Sold") +
+    scale_y_continuous("Quantity(B)", sec.axis = sec_axis(~. / 2, name = "Price ($)"))
 ```
 
 ## Estimating the demand equation
@@ -96,8 +92,9 @@ For the sake of brevity, we are going to assume that we only the price of beef i
 How to evaluate the model is any good or not will be a post for another day.
 
 ```{r message=FALSE, include=FALSE, warning=FALSE}
-stargazer(demand.model, type = "html", out = "demand_model.txt", title = "Beef Demand Model")
+stargazer(demand.model, type = "latex", title = "Beef Demand Model")
 ```
+
 
 <div align = "center">
 <table style="text-align:center"><caption><strong>Beef Demand Model</strong></caption>
@@ -149,8 +146,6 @@ demand.equation <- function(x){
 
 Now this is where the example is going to diverge from what I've seen others do... By all means the way others have done it is completely correct. What I've seen typically done is people will generate a vector of arbitrary prices, say $0 - $1,000 and evaluate their demand equation at each price and see what the estimated revenue will be. This definitely works, but in my opinion there's a far more efficient and sophisticated way to solve this problem. After all, I dont want to let all those hours studying math go to waste. 
 
-## The Math!
-
 In this example we want to maximize revenue of beef sales with respect to the price of beef. We could maximize profit and in that case we would consider costs in our equation, however for this example we are going to stick with revenue.
 
 If we were going to understand what our total revenue (TR) of sales was it would simply be the quanity of products sold (Q) multiplied by the price of those products (P), the resulting equation is below.
@@ -187,14 +182,10 @@ We can visually inspect what our total revenue would be over all the price point
 
 
 ```{r, fig.align = 'center'}
-div(
-  ggplotly(
-    ggplot(data.frame(price = 0:500), aes(price)) +
-      stat_function(fun = demand.equation, geom = 'line') +
-      labs(title = "Total Revenue Curve", x = "Beef Price", y = "Total Revenue ($)") +
-      scale_y_continuous(labels = dollar) +
-      scale_x_continuous(labels = dollar)
-    ), align = "center"
-)
+ggplot(data.frame(price = 0:500), aes(price)) +
+  stat_function(fun = demand.equation, geom = 'line') +
+  labs(title = "Total Revenue Curve", x = "Beef Price", y = "Total Revenue ($)") +
+  scale_y_continuous(labels = dollar) +
+  scale_x_continuous(labels = dollar)
 ```
 
