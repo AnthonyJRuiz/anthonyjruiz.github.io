@@ -26,10 +26,9 @@ navbar-links:
   Blog:
   About Me: "aboutme"
   Shiny Dashboards:
-  NOAA Storm Explorer: "https://anthonyjruiz.shinyapps.io/hurricane_explorer/"
+    - NOAA Storm Explorer: "https://anthonyjruiz.shinyapps.io/hurricane_explorer/"
 
 
-#  Author's home: "http://deanattali.com"
 
 # Image to show in the navigation bar - image must be a square (width = height)
 # Remove this parameter if you don't want an image in the navbar
