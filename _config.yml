@@ -25,9 +25,9 @@ description: Personal Website
 navbar-links:
   Blog:
   About Me: "aboutme"
-  Shiny Dashboards (coming soon):
-  #  - NBA Players: "https://anthonyjruiz.shinyapps.io/nba_player/"
-  # Resume: "resume"
+  Shiny Dashboards:
+  NOAA Storm Explorer: "https://anthonyjruiz.shinyapps.io/hurricane_explorer/"
+
 
 #  Author's home: "http://deanattali.com"
 
